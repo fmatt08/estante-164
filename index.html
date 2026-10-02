@@ -112,9 +112,10 @@
       <label class="toolcard">♻️<b>Restaurar backup</b><small>Selecionar arquivo ZIP<input id="restoreInput" type="file" accept=".zip,application/zip"></small></label>
       <button id="printAll" class="toolcard">🖨️<b>Imprimir catálogo</b><small>Fichas das peças</small></button>
       <button id="importCsv" class="toolcard">📥<b>Importar CSV</b><small>Importar sua planilha</small></button>
+      <button id="exitApp" class="toolcard exitcard">🚪<b>Encerrar aplicativo</b><small>Fecha o app quando o dispositivo permitir</small></button>
       <input id="csvInput" type="file" accept=".csv,text/csv" hidden>
     </div>
-    <p class="muted">Os dados ficam no próprio dispositivo. Faça backups regularmente antes de trocar de aparelho ou limpar os dados do navegador.</p>
+    <p class="muted">Os dados ficam no próprio dispositivo. Faça backups regularmente antes de trocar de aparelho ou limpar os dados do navegador. Como este app não usa login, “Encerrar” apenas tenta fechar a janela; no iPhone, se o sistema não permitir, feche pelo seletor de aplicativos.</p>
   </dialog>
 
   <div id="toast" class="toast"></div>
