@@ -1,0 +1,48 @@
+ESTANTE 1:64 — PWA INDEPENDENTE
+================================
+
+Este projeto NÃO usa Replit, Lovable, Supabase ou banco de dados remoto.
+
+Recursos:
+- Estante Virtual mobile-first
+- Cadastro, edição e exclusão
+- Câmera/galeria
+- Pesquisa e filtros
+- Estatísticas
+- Localização: estante/prateleira/posição
+- Impressão
+- Importação/exportação CSV
+- Backup completo ZIP com dados + fotos
+- Armazenamento local via IndexedDB
+- PWA com suporte offline
+
+COMO TESTAR NO COMPUTADOR
+-------------------------
+É necessário abrir a pasta por HTTP/HTTPS para que o Service Worker/PWA funcione.
+Se você tiver Python instalado, dentro desta pasta execute:
+
+python -m http.server 8000
+
+Depois abra:
+http://localhost:8000
+
+NO CELULAR
+----------
+Para instalar como PWA, o projeto precisa ser publicado em um endereço HTTPS
+gratuito (por exemplo, GitHub Pages). Não é necessário Replit nem servidor pago.
+
+BACKUP
+------
+O backup completo é um ZIP:
+  backup_estante_164.zip
+    catalogo.json
+    fotos/
+
+O CSV contém os dados tabulares. As fotos ficam no backup ZIP para evitar
+um CSV gigantesco.
+
+IMPORTANTE
+----------
+O catálogo fica no armazenamento local do navegador/dispositivo. Faça backups
+regulares, especialmente antes de limpar os dados do navegador, trocar de
+aparelho ou reinstalar o sistema.

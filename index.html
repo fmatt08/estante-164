@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Catálogo pessoal de miniaturas escala 1:64">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>Estante 1:64</title>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">COLEÇÃO</div>
+      <h1>Estante 1:64</h1>
+    </div>
+    <button id="addTop" class="primary">＋ Adicionar</button>
+  </header>
+
+  <main>
+    <section class="stats" id="quickStats"></section>
+
+    <section class="toolbar">
+      <div class="tabs">
+        <button class="tab active" data-view="shelf">🗄️ Estante</button>
+        <button class="tab" data-view="list">📋 Lista</button>
+        <button class="tab" data-view="stats">📊 Estatísticas</button>
+      </div>
+      <div class="searchrow">
+        <input id="search" type="search" placeholder="Pesquisar fabricante, modelo, cor..." autocomplete="off">
+        <button id="filtersBtn" class="secondary">⚙ Filtros</button>
+      </div>
+      <div id="filters" class="filters hidden">
+        <select id="filterManufacturer"><option value="">Fabricante</option></select>
+        <select id="filterYear"><option value="">Ano</option></select>
+        <select id="filterCondition"><option value="">Conservação</option></select>
+        <select id="filterMaterial"><option value="">Material</option></select>
+        <select id="filterShelf"><option value="">Estante</option></select>
+        <button id="clearFilters" class="secondary">Limpar</button>
+      </div>
+    </section>
+
+    <section id="shelfView" class="view"></section>
+    <section id="listView" class="view hidden"></section>
+    <section id="statsView" class="view hidden"></section>
+  </main>
+
+  <nav class="bottomnav">
+    <button class="navitem active" data-view="shelf">🗄️<span>Estante</span></button>
+    <button class="navitem" data-view="list">📋<span>Lista</span></button>
+    <button class="navitem" data-view="stats">📊<span>Dados</span></button>
+    <button class="navitem" id="toolsBtn">⚙️<span>Ferramentas</span></button>
+  </nav>
+
+  <dialog id="editor">
+    <form method="dialog" id="itemForm">
+      <div class="modalhead">
+        <div>
+          <div class="eyebrow">CATÁLOGO</div>
+          <h2 id="formTitle">Nova miniatura</h2>
+        </div>
+        <button value="cancel" class="iconbtn">✕</button>
+      </div>
+      <input type="hidden" id="itemId">
+      <div class="photoBox">
+        <img id="photoPreview" alt="Foto da miniatura" class="photoPreview hidden">
+        <div id="photoEmpty">📷<br><span>Adicione uma foto</span></div>
+      </div>
+      <div class="photoActions">
+        <label class="secondary filebtn">📷 Tirar foto
+          <input id="cameraInput" type="file" accept="image/*" capture="environment">
+        </label>
+        <label class="secondary filebtn">🖼️ Galeria
+          <input id="galleryInput" type="file" accept="image/*">
+        </label>
+        <button type="button" id="removePhoto" class="secondary">Remover</button>
+      </div>
+
+      <div class="grid2">
+        <label>Fabricante<input id="manufacturer" required></label>
+        <label>Modelo<input id="model" required></label>
+        <label>Escala<input id="scale" value="1:64"></label>
+        <label>Visual / Cor<input id="color"></label>
+        <label>Conservação
+          <select id="condition"><option>Excelente</option><option>Muito bom</option><option>Bom</option><option>Regular</option><option>Restauração</option></select>
+        </label>
+        <label>Ano de fabricação<input id="year" type="number" min="1900" max="2100"></label>
+        <label>Valor pago (R$)<input id="value" type="number" min="0" step="0.01"></label>
+        <label>Material<input id="material" placeholder="Metal, plástico..."></label>
+        <label>Data de aquisição<input id="acquired" type="date"></label>
+        <label>Estante<input id="shelf" type="number" min="1" placeholder="1"></label>
+        <label>Prateleira<input id="row" type="number" min="1" placeholder="1"></label>
+        <label>Posição<input id="position" type="number" min="1" placeholder="1"></label>
+      </div>
+      <label>Observações<textarea id="notes" rows="3"></textarea></label>
+
+      <div class="modalactions">
+        <button type="button" id="deleteItem" class="danger hidden">Excluir</button>
+        <span></span>
+        <button value="cancel" class="secondary">Cancelar</button>
+        <button id="saveItem" value="default" class="primary">Salvar miniatura</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="tools">
+    <div class="modalhead"><h2>Ferramentas</h2><button class="iconbtn" onclick="tools.close()">✕</button></div>
+    <div class="toolgrid">
+      <button id="exportCsv" class="toolcard">📄<b>Exportar CSV</b><small>Para Excel e planilhas</small></button>
+      <button id="backup" class="toolcard">💾<b>Backup completo</b><small>ZIP com dados + fotos</small></button>
+      <label class="toolcard">♻️<b>Restaurar backup</b><small>Selecionar arquivo ZIP<input id="restoreInput" type="file" accept=".zip,application/zip"></small></label>
+      <button id="printAll" class="toolcard">🖨️<b>Imprimir catálogo</b><small>Fichas das peças</small></button>
+      <button id="importCsv" class="toolcard">📥<b>Importar CSV</b><small>Importar sua planilha</small></button>
+      <input id="csvInput" type="file" accept=".csv,text/csv" hidden>
+    </div>
+    <p class="muted">Os dados ficam no próprio dispositivo. Faça backups regularmente antes de trocar de aparelho ou limpar os dados do navegador.</p>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>

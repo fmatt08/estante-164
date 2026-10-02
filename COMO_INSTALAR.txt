@@ -1,0 +1,13 @@
+ESTANTE 1:64 — INSTALAÇÃO
+
+Opção recomendada:
+1. Publique esta pasta em uma hospedagem HTTPS gratuita.
+2. Abra o endereço no Safari/Chrome do celular.
+3. Use "Adicionar à Tela de Início" / "Instalar aplicativo".
+4. O catálogo passa a abrir como aplicativo.
+
+Não é necessário banco de dados online.
+Os dados e fotos permanecem no aparelho.
+
+Se quiser, podemos fazer a próxima etapa juntos e publicar gratuitamente
+em GitHub Pages, sem Replit.
